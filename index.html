@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team TEAMname — Masterz x IOTA EU Hackathon</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* Backgrounds */
+      --bg-primary: #000000;
+      --bg-elevated: #0A0A0F;
+      --bg-surface: #12121A;
+      --bg-border: #1E1E2A;
+
+      /* Text */
+      --text-primary: #FFFFFF;
+      --text-secondary: #8A8A9A;
+      --text-tertiary: #4A4A5A;
+
+      /* IOTA */
+      --iota-blue: #0101FF;
+      --iota-lavender: #A59AFA;
+      --iota-navy: #000060;
+
+      /* Tabulas (one-off use) */
+      --tabulas-sage: #88927D;
+
+      /* Functional */
+      --status-live: #22C55E;
+      --status-upcoming: #F59E0B;
+
+      /* Typography */
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 48px;
+      --space-2xl: 64px;
+      --space-3xl: 96px;
+    }
+
+    body {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ——— Layout ——— */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: var(--space-2xl) 0;
+      border-bottom: 1px solid var(--bg-border);
+    }
+
+    section:last-child {
+      border-bottom: none;
+    }
+
+    /* ——— Header ——— */
+    header {
+      padding: var(--space-xl) 0 0;
+      border-bottom: 1px solid var(--bg-border);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: var(--space-xl);
+    }
+
+    .logo {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      color: var(--text-secondary);
+    }
+
+    .badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--iota-blue);
+      border: 1px solid var(--iota-blue);
+      padding: 6px 12px;
+    }
+
+    /* ——— Hero ——— */
+    .hero {
+      padding: var(--space-3xl) 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      max-width: 600px;
+      color: var(--text-primary);
+    }
+
+    .hero p {
+      margin-top: var(--space-lg);
+      color: var(--text-secondary);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 480px;
+    }
+
+    /* ——— Section Headers ——— */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      line-height: 1.0;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin-bottom: var(--space-md);
+      color: var(--text-primary);
+    }
+
+    /* ——— Team ——— */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--bg-border);
+      border: 1px solid var(--bg-border);
+      margin-top: 32px;
+    }
+
+    .team-member {
+      background: var(--bg-elevated);
+      padding: 32px 24px;
+    }
+
+    .team-member .name {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .team-member .role {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .team-member .location {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    .team-member .location::before {
+      content: '↳ ';
+    }
+
+    /* ——— Problem / Build / Impact ——— */
+    .statement {
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1.6;
+      max-width: 640px;
+      color: var(--text-primary);
+    }
+
+    .statement em {
+      font-style: normal;
+      border-bottom: 1px solid var(--text-secondary);
+    }
+
+    .placeholder {
+      display: inline-block;
+      background: var(--bg-border);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: var(--space-xs) 10px;
+      margin-top: var(--space-md);
+    }
+
+    /* ——— Supply Chain Pod (MasterZ) ——— */
+    .pod-box {
+      border: 1px solid var(--iota-blue);
+      padding: var(--space-lg) var(--space-xl);
+      margin-top: var(--space-md);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .pod-content {
+      min-width: 0;
+    }
+
+    .pod-figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .pod-image {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      display: block;
+    }
+
+    .pod-caption {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .pod-section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--iota-blue);
+      margin-bottom: var(--space-lg);
+    }
+
+    .pod-heading {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--text-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .pod-subheading {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-md);
+    }
+
+    .pod-statement {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.6;
+      max-width: 560px;
+      color: var(--text-primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .pod-learn-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .pod-learn-list {
+      list-style: none;
+    }
+
+    .pod-learn-list li {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: var(--space-xs);
+    }
+
+    .pod-learn-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--iota-blue);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+
+    @media (max-width: 600px) {
+      .pod-box {
+        grid-template-columns: 1fr;
+      }
+
+      .pod-image {
+        max-width: 240px;
+      }
+    }
+
+    /* ——— Tracks / Objectives ——— */
+    .tracks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--bg-border);
+      border: 1px solid var(--bg-border);
+      margin-top: 32px;
+    }
+
+    .track {
+      background: var(--bg-elevated);
+      padding: 32px 28px;
+    }
+
+    .track-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: var(--space-lg);
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--bg-border);
+    }
+
+    .track-item {
+      margin-bottom: 20px;
+    }
+
+    .track-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .track-item-title {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .track-item-desc {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    /* ——— Log ——— */
+    .log-entry {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: var(--space-lg);
+      padding: var(--space-lg) 0;
+      border-bottom: 1px solid var(--bg-border);
+    }
+
+    .log-entry:last-child {
+      border-bottom: none;
+    }
+
+    .log-date {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      padding-top: 2px;
+    }
+
+    .log-content h3 {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .log-content p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    .log-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border: 1px solid var(--bg-border);
+      color: var(--text-secondary);
+      margin-right: 6px;
+      margin-top: var(--space-sm);
+    }
+
+    /* v2: Colored tags */
+    .log-tag[data-tag="decision"] {
+      border-color: var(--iota-lavender);
+    }
+
+    .log-tag[data-tag="build"] {
+      border-color: var(--iota-blue);
+    }
+
+    .log-tag[data-tag="link"] {
+      color: var(--iota-blue);
+      border-color: var(--iota-blue);
+    }
+
+    .log-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      border-bottom: 1px solid var(--iota-blue);
+      transition: border-color 0.15s;
+    }
+
+    .log-link:hover {
+      border-color: var(--iota-blue);
+    }
+
+    /* ——— Footer ——— */
+    footer {
+      padding: var(--space-xl) 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.0;
+      color: var(--text-secondary);
+    }
+
+    footer a {
+      color: var(--text-primary);
+      text-decoration: none;
+      border-bottom: 1px solid var(--iota-blue);
+      transition: border-color 0.15s;
+    }
+
+    footer a:hover {
+      border-color: var(--iota-blue);
+    }
+
+    /* ——— Responsive ——— */
+    @media (max-width: 600px) {
+      .team-grid,
+      .tracks {
+        grid-template-columns: 1fr;
+      }
+
+      .log-entry {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .header-top {
+        flex-direction: column;
+        gap: var(--space-md);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="header-top">
+        <div class="logo">TEAMname <span>× IOTA</span></div>
+        <div class="badge">Masterz × IOTA EU</div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Textiles Circularity with Digital Product Passports</h1>
+      <p>A team of three building product transparency infrastructure for textiles, verifiable on IOTA — for the Masterz x IOTA EU hackathon.</p>
+    </section>
+
+    <!-- Team -->
+    <section>
+      <div class="section-label">01 — Team</div>
+
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="name">Stephanos</div>
+          <div class="role">Role TBD</div>
+          <div class="location">Location TBD</div>
+        </div>
+        <div class="team-member">
+          <div class="name">Omar</div>
+          <div class="role">Role TBD</div>
+          <div class="location">Location TBD</div>
+        </div>
+        <div class="team-member">
+          <div class="name">Ward</div>
+          <div class="role">Founder & Product</div>
+          <div class="location">Belgium</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem -->
+    <section>
+      <div class="section-label">02 — Problem</div>
+      <p class="statement">
+        Today, a garment's lifecycle effectively ends at the point of sale. Once a shirt leaves the store, brands lose visibility, recyclers lack context, and consumers have no incentive to repair or recycle. Without traceability and rewards, circularity in textiles remains theoretical rather than real.
+      </p>
+      <p class="statement" style="margin-top: var(--space-lg); font-size: 15px;">
+        Blockchain adoption is lower relative to centralized systems for DPPs. There's a lack of proper EU recycling infrastructure in textiles. DPPs alone don't achieve circularity — they need actionable logic. EU basic DPP compliance is required by 2027.
+      </p>
+    </section>
+
+    <!-- Supply Chain Pod (MasterZ × IOTA) -->
+    <section>
+      <div class="section-label">03 — Supply Chain Pod</div>
+      <div class="pod-box">
+        <div class="pod-content">
+          <div class="pod-section-label">Immutable and Trustworthy Systems</div>
+          <p class="pod-statement">
+            With IOTA, you can design solutions that bring trust and traceability across the full supply chain.
+          </p>
+          <div class="pod-learn-title">What you'll learn</div>
+          <ul class="pod-learn-list">
+            <li>Digital trade and process automation</li>
+            <li>Cross-border efficiency</li>
+            <li>Real innovation in product traceability</li>
+          </ul>
+        </div>
+        <div class="pod-figure">
+          <img src="assets/supply-chain-pod.png" alt="Supply chain: trust, traceability and automation with IOTA" class="pod-image" />
+          <a href="https://www.masterzblockchain.com/en/masterz-iota" class="log-link pod-caption" target="_blank" rel="noopener">MasterZ × IOTA Hackathon →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Objectives -->
+    <section>
+      <div class="section-label">04 — Objectives</div>
+
+      <div class="tracks">
+
+        <div class="track">
+          <div class="track-label">Supply Chain Track</div>
+          <div class="track-items">
+            <div class="track-item">
+              <div class="track-item-title">Product traceability beyond the factory</div>
+              <div class="track-item-desc">No visibility in the consumer journey — once a product leaves the factory, the chain goes dark.</div>
+            </div>
+            <div class="track-item">
+              <div class="track-item-title">Consumer reward mechanisms</div>
+              <div class="track-item-desc">No incentive system exists for consumers who participate in circular economy actions.</div>
+            </div>
+            <div class="track-item">
+              <div class="track-item-title">Compliance infrastructure</div>
+              <div class="track-item-desc">EU regulations require verifiable product data by February 2027 — most supply chains aren't ready.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="track">
+          <div class="track-label">Digital Identity Track</div>
+          <div class="track-items">
+            <div class="track-item">
+              <div class="track-item-title">Data ownership & transfer</div>
+              <div class="track-item-desc">Who owns product data as it moves through the lifecycle — and how is it handed off?</div>
+            </div>
+            <div class="track-item">
+              <div class="track-item-title">Privacy & anonymity</div>
+              <div class="track-item-desc">Consumers, producers, and recyclers need to interact without exposing each other's identity.</div>
+            </div>
+            <div class="track-item">
+              <div class="track-item-title">Cross-system interoperability</div>
+              <div class="track-item-desc">EU compliance demands data flows across systems and jurisdictions — no walled gardens.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- What We're Building -->
+    <section>
+      <div class="section-label">05 — What We're Building</div>
+      <p class="statement">
+        We leverage IOTA's Digital Product Passport (DPP) framework to give every garment a persistent digital identity across its lifecycle. Using IOTA Native Assets and NFTs, each shirt becomes a verifiable, machine-readable record. Trusted actors — such as recyclers, repair shops, and brands — can update lifecycle events via a role-based entity hierarchy, ensuring only authorized events trigger actions. Oracles can feed real-world data, such as material value or recycling confirmation, to the ledger in real time. When lifecycle conditions are met, consumers or suppliers automatically unlock rewards.
+      </p>
+      <div class="placeholder">↓ technical architecture to follow</div>
+    </section>
+
+    <!-- Considerations -->
+    <section>
+      <div class="section-label">06 — Considerations</div>
+      <p class="statement" style="font-size: 15px;">
+        Competing with established DPP protocols in the market — we're exploring ways to sit on top of them instead of directly issuing our own DPP model. The EU will likely roll out its own textile DPP scheme as part of legislation, so we're designing for interoperability and compliance from the start.
+      </p>
+    </section>
+
+    <!-- Impact -->
+    <section>
+      <div class="section-label">07 — Impact</div>
+      <p class="statement">
+        Every garment gets a verifiable digital identity that persists from factory to consumer to recycler. Consumers see the full story and get rewarded for returning products. Brands maintain visibility throughout the lifecycle. Recyclers verify materials with proper context. All EU-compliant, all interoperable, all actionable.
+      </p>
+      <div class="placeholder">↓ metrics & scope evolving</div>
+    </section>
+
+    <!-- Build Log -->
+    <section>
+      <div class="section-label">08 — Build Log</div>
+
+      <div class="log-entry">
+        <div class="log-date">18 Feb 2025</div>
+        <div class="log-content">
+          <h3>Project kickoff</h3>
+          <p>Team formed. Initial scope discussion. Set up project page.</p>
+          <span class="log-tag" data-tag="meeting">meeting</span>
+          <span class="log-tag" data-tag="decision">decision</span>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-date">—</div>
+        <div class="log-content">
+          <h3>Next entry</h3>
+          <p>Updates will be logged here as the project evolves week by week.</p>
+          <span class="log-tag" data-tag="upcoming">upcoming</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        <a href="https://teamname.eu">teamname.eu</a> · 
+        <a href="https://iota.org">iota.org</a>
+      </p>
+    </footer>
+
+  </div>
+
+</body>
+</html>

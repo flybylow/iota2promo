@@ -108,7 +108,28 @@
 
     /* ——— Hero ——— */
     .hero {
-      padding: var(--space-3xl) 0;
+      padding: calc(var(--space-3xl) + var(--space-xl)) var(--space-lg) var(--space-3xl);
+      position: relative;
+      background: var(--bg-elevated) url('assets/hero-bg.png') center / cover no-repeat;
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(10,10,15,0.85) 60%, var(--bg-elevated) 100%);
+      pointer-events: none;
+    }
+
+    .hero h1,
+    .hero .hero-subtitle,
+    .hero .hero-question {
+      position: relative;
+      z-index: 1;
     }
 
     .hero h1 {
@@ -116,16 +137,29 @@
       font-weight: 300;
       line-height: 1.1;
       letter-spacing: -0.02em;
-      max-width: 600px;
+      max-width: 640px;
       color: var(--text-primary);
+      margin-bottom: var(--space-md);
     }
 
-    .hero p {
-      margin-top: var(--space-lg);
-      color: var(--text-secondary);
-      font-size: 15px;
+    .hero-subtitle {
+      font-size: 16px;
+      font-weight: 300;
       line-height: 1.6;
-      max-width: 480px;
+      color: rgba(255, 255, 255, 0.92);
+      margin-bottom: var(--space-xl);
+      max-width: 640px;
+      padding: var(--space-md) var(--space-lg);
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 4px;
+    }
+
+    .hero-question {
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--text-primary);
+      max-width: 640px;
     }
 
     /* ——— Section Headers ——— */
@@ -506,8 +540,9 @@
 
     <!-- Hero -->
     <section class="hero">
-      <h1>Textiles Circularity with Digital Product Passports</h1>
-      <p>A team of three building product transparency infrastructure for textiles, verifiable on IOTA — for the Masterz x IOTA EU hackathon.</p>
+      <h1>10,000 swimming pools</h1>
+      <p class="hero-subtitle">full of t-shirts. Buried or burned.<br>Every year. In Europe alone.</p>
+      <p class="hero-question">What if every t-shirt had a passport<br>that follows it from factory to recycling bin.<br>And rewards you for closing the loop?</p>
     </section>
 
     <!-- Team -->
@@ -537,10 +572,7 @@
     <section>
       <div class="section-label">02 — Problem</div>
       <p class="statement">
-        Today, a garment's lifecycle effectively ends at the point of sale. Once a shirt leaves the store, brands lose visibility, recyclers lack context, and consumers have no incentive to repair or recycle. Without traceability and rewards, circularity in textiles remains theoretical rather than real.
-      </p>
-      <p class="statement" style="margin-top: var(--space-lg); font-size: 15px;">
-        Blockchain adoption is lower relative to centralized systems for DPPs. There's a lack of proper EU recycling infrastructure in textiles. DPPs alone don't achieve circularity — they need actionable logic. EU basic DPP compliance is required by 2027.
+        Once a shirt leaves the store, brands lose visibility, recyclers lack context, and consumers have no incentive to repair or recycle. Without traceability and rewards, circularity in textiles remains theoretical rather than real.
       </p>
     </section>
 
@@ -616,7 +648,13 @@
     <section>
       <div class="section-label">05 — What We're Building</div>
       <p class="statement">
-        We leverage IOTA's Digital Product Passport (DPP) framework to give every garment a persistent digital identity across its lifecycle. Using IOTA Native Assets and NFTs, each shirt becomes a verifiable, machine-readable record. Trusted actors — such as recyclers, repair shops, and brands — can update lifecycle events via a role-based entity hierarchy, ensuring only authorized events trigger actions. Oracles can feed real-world data, such as material value or recycling confirmation, to the ledger in real time. When lifecycle conditions are met, consumers or suppliers automatically unlock rewards.
+        We leverage IOTA's Digital Product Passport (DPP) framework to give every garment a persistent digital identity across its lifecycle.
+      </p>
+      <p class="statement" style="margin-top: var(--space-lg);">
+        Each shirt becomes a verifiable, machine-readable record. Trusted actors — such as recyclers, repair shops, and brands — can update lifecycle events via a role-based entity hierarchy, ensuring only authorized events trigger actions.
+      </p>
+      <p class="statement" style="margin-top: var(--space-lg);">
+        When lifecycle conditions are met, consumers are rewarded.
       </p>
       <div class="placeholder">↓ technical architecture to follow</div>
     </section>
@@ -625,7 +663,7 @@
     <section>
       <div class="section-label">06 — Considerations</div>
       <p class="statement" style="font-size: 15px;">
-        Competing with established DPP protocols in the market — we're exploring ways to sit on top of them instead of directly issuing our own DPP model. The EU will likely roll out its own textile DPP scheme as part of legislation, so we're designing for interoperability and compliance from the start.
+        The EU will likely roll out its own textile DPP scheme as part of legislation, so we're designing for interoperability and compliance from the start.
       </p>
     </section>
 

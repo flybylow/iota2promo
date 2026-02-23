@@ -119,26 +119,6 @@
       padding: 6px 12px;
     }
 
-    .welcome-banner {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-tertiary);
-      margin-bottom: var(--space-md);
-    }
-
-    .welcome-banner a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      border-bottom: 1px solid var(--bg-border);
-    }
-
-    .welcome-banner a:hover {
-      border-bottom-color: var(--iota-blue);
-      color: var(--text-primary);
-    }
-
     /* ——— Hero ——— */
     .hero {
       padding: calc(var(--space-3xl) + var(--space-xl)) var(--space-lg) var(--space-3xl);
@@ -283,7 +263,12 @@
     .problem-slides-track {
       position: relative;
       width: 100%;
-      aspect-ratio: 16/10;
+      height: 420px;
+      min-height: 420px;
+      background: var(--bg-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .problem-slide {
@@ -291,6 +276,11 @@
       inset: 0;
       opacity: 0;
       transition: opacity 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      box-sizing: border-box;
     }
 
     .problem-slide.active {
@@ -299,9 +289,11 @@
     }
 
     .problem-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
       display: block;
     }
 
@@ -327,6 +319,41 @@
     .problem-slides-dots button.active,
     .problem-slides-dots button:hover {
       background: var(--iota-blue);
+    }
+
+    .problem-slides-prev,
+    .problem-slides-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .problem-slides-prev:hover,
+    .problem-slides-next:hover {
+      background: var(--iota-blue);
+    }
+
+    .problem-slides-prev {
+      left: var(--space-md);
+    }
+
+    .problem-slides-next {
+      right: var(--space-md);
     }
 
     .header-logo-img {
@@ -632,7 +659,6 @@
 
     <!-- Header -->
     <header>
-      <p class="welcome-banner">Welcome to <a href="https://githubuniverse.com" target="_blank" rel="noopener">GitHub Universe</a></p>
       <div class="header-top">
         <div class="logo">
           <img src="assets/screenshots/logo.png" alt="" class="header-logo-img" aria-hidden="true">
@@ -690,6 +716,8 @@
           <div class="problem-slide" data-index="5"><img src="assets/screenshots/06.png" alt=""></div>
           <div class="problem-slide" data-index="6"><img src="assets/screenshots/07.png" alt=""></div>
         </div>
+        <button type="button" class="problem-slides-prev" id="problemSlidesPrev" aria-label="Previous slide">‹</button>
+        <button type="button" class="problem-slides-next" id="problemSlidesNext" aria-label="Next slide">›</button>
         <div class="problem-slides-dots" id="problemSlidesDots"></div>
       </div>
     </section>
@@ -821,7 +849,7 @@
 
     <!-- Footer -->
     <footer>
-      <p>T-shirt tracer (project) by 1circle (team) · <a href="https://1circle.eu">1circle.eu</a> · <a href="https://iota.org">iota.org</a></p>
+      <p><a href="https://1circle.eu">1circle.eu</a> · T-shirt tracer (project) by 1circle (team) · <a href="https://iota.org">iota.org</a></p>
     </footer>
 
   </div>
@@ -849,12 +877,17 @@
       }
 
       var dots = dotsContainer.querySelectorAll('button');
+      var prevBtn = document.getElementById('problemSlidesPrev');
+      var nextBtn = document.getElementById('problemSlidesNext');
 
       function go(j) {
         index = (j + n) % n;
         slides.forEach(function (s, i) { s.classList.toggle('active', i === index); });
         dots.forEach(function (d, i) { d.classList.toggle('active', i === index); });
       }
+
+      if (prevBtn) prevBtn.addEventListener('click', function () { go(index - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { go(index + 1); });
 
       setInterval(function () { go(index + 1); }, 4500);
     })();

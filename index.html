@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Team TEAMname — Masterz x IOTA EU Hackathon</title>
+  <title>T-shirt tracer — 1circle | Masterz x IOTA EU Hackathon</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -96,6 +96,19 @@
       color: var(--text-secondary);
     }
 
+    .logo-project {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      margin-right: var(--space-sm);
+    }
+
+    .logo-sep {
+      color: var(--text-tertiary);
+      margin-right: var(--space-sm);
+    }
+
     .badge {
       font-family: var(--font-mono);
       font-size: 11px;
@@ -104,6 +117,26 @@
       color: var(--iota-blue);
       border: 1px solid var(--iota-blue);
       padding: 6px 12px;
+    }
+
+    .welcome-banner {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: var(--space-md);
+    }
+
+    .welcome-banner a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-bottom: 1px solid var(--bg-border);
+    }
+
+    .welcome-banner a:hover {
+      border-bottom-color: var(--iota-blue);
+      color: var(--text-primary);
     }
 
     /* ——— Hero ——— */
@@ -235,6 +268,72 @@
     .statement em {
       font-style: normal;
       border-bottom: 1px solid var(--text-secondary);
+    }
+
+    /* ——— Problem slideshow ——— */
+    .problem-slideshow {
+      position: relative;
+      max-width: 640px;
+      margin-top: var(--space-xl);
+      border: 1px solid var(--bg-border);
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .problem-slides-track {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/10;
+    }
+
+    .problem-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .problem-slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .problem-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .problem-slides-dots {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: var(--space-md);
+      background: var(--bg-surface);
+    }
+
+    .problem-slides-dots button {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: none;
+      background: var(--bg-border);
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s;
+    }
+
+    .problem-slides-dots button.active,
+    .problem-slides-dots button:hover {
+      background: var(--iota-blue);
+    }
+
+    .header-logo-img {
+      height: 28px;
+      width: auto;
+      vertical-align: middle;
+      margin-right: var(--space-sm);
     }
 
     .placeholder {
@@ -533,8 +632,14 @@
 
     <!-- Header -->
     <header>
+      <p class="welcome-banner">Welcome to <a href="https://githubuniverse.com" target="_blank" rel="noopener">GitHub Universe</a></p>
       <div class="header-top">
-        <div class="logo">TEAMname <span>× IOTA</span></div>
+        <div class="logo">
+          <img src="assets/screenshots/logo.png" alt="" class="header-logo-img" aria-hidden="true">
+          <span class="logo-project">T-shirt tracer</span>
+          <span class="logo-sep" aria-hidden="true">·</span>
+          1circle <span>× IOTA</span>
+        </div>
         <div class="badge">Masterz × IOTA EU</div>
       </div>
     </header>
@@ -548,7 +653,7 @@
 
     <!-- Team -->
     <section>
-      <div class="section-label">01 — Team</div>
+      <div class="section-label">01 — Team · 1circle</div>
 
       <div class="team-grid">
         <div class="team-member">
@@ -575,6 +680,18 @@
       <p class="statement">
         Once a shirt leaves the store, brands lose visibility, recyclers lack context, and consumers have no incentive to repair or recycle. Without traceability and rewards, circularity in textiles remains theoretical rather than real.
       </p>
+      <div class="problem-slideshow" id="problemSlideshow">
+        <div class="problem-slides-track">
+          <div class="problem-slide active" data-index="0"><img src="assets/screenshots/01.png" alt=""></div>
+          <div class="problem-slide" data-index="1"><img src="assets/screenshots/02.png" alt=""></div>
+          <div class="problem-slide" data-index="2"><img src="assets/screenshots/03.png" alt=""></div>
+          <div class="problem-slide" data-index="3"><img src="assets/screenshots/04.png" alt=""></div>
+          <div class="problem-slide" data-index="4"><img src="assets/screenshots/05.png" alt=""></div>
+          <div class="problem-slide" data-index="5"><img src="assets/screenshots/06.png" alt=""></div>
+          <div class="problem-slide" data-index="6"><img src="assets/screenshots/07.png" alt=""></div>
+        </div>
+        <div class="problem-slides-dots" id="problemSlidesDots"></div>
+      </div>
     </section>
 
     <!-- Supply Chain Pod (MasterZ × IOTA) -->
@@ -704,13 +821,43 @@
 
     <!-- Footer -->
     <footer>
-      <p>
-        <a href="https://teamname.eu">teamname.eu</a> · 
-        <a href="https://iota.org">iota.org</a>
-      </p>
+      <p>T-shirt tracer (project) by 1circle (team) · <a href="https://1circle.eu">1circle.eu</a> · <a href="https://iota.org">iota.org</a></p>
     </footer>
 
   </div>
 
+  <script>
+    (function () {
+      var track = document.querySelector('#problemSlideshow .problem-slides-track');
+      if (!track) return;
+      var slides = track.querySelectorAll('.problem-slide');
+      var dotsContainer = document.getElementById('problemSlidesDots');
+      var n = slides.length;
+      var index = 0;
+
+      for (var i = 0; i < n; i++) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        if (i === 0) btn.classList.add('active');
+        btn.addEventListener('click', function () {
+          var j = parseInt(this.getAttribute('data-index'), 10);
+          go(j);
+        });
+        btn.setAttribute('data-index', i);
+        dotsContainer.appendChild(btn);
+      }
+
+      var dots = dotsContainer.querySelectorAll('button');
+
+      function go(j) {
+        index = (j + n) % n;
+        slides.forEach(function (s, i) { s.classList.toggle('active', i === index); });
+        dots.forEach(function (d, i) { d.classList.toggle('active', i === index); });
+      }
+
+      setInterval(function () { go(index + 1); }, 4500);
+    })();
+  </script>
 </body>
 </html>
